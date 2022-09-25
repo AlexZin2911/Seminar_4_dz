@@ -1,29 +1,49 @@
-﻿// Задача 29: Пользователь вводит 8 чисел. Поместите их в массив и распечатайте.
+// Задача 29. Пользователель вводит 8 чисел.
+// Поместите их в массив и распечатайте.
+Console.WriteLine();
+Console.WriteLine("_____________________________________________________________________________________");
+Console.Write("Введите желаемое количество элементов в массиве (число/цифра должны быть целыми)");
+Console.WriteLine("Нажмите Enter после ввода или Ctrl + C, если передумали");
 
-using System;
+bool numBool = false;
+int num = 0;
 
-Console.WriteLine("Введите 1 элемент массива");
-int num1 = int.Parse(Console.ReadLine()!);
+while (!numBool)
+{
+    Console.WriteLine("Вы ввели не целое чило, попробуйте еще раз.");
+    numBool = int.TryParse(Console.ReadLine()!, out num);
+}
 
-Console.WriteLine("Введите 2 элемент массива");
-int num2 = int.Parse(Console.ReadLine()!);
+int[] array = CreateArray(num);
+Console.WriteLine();
+AddedArray(array);
+Console.Write("[");
+PrintArray(array);
+Console.Write("]");
+Console.WriteLine();
 
-Console.WriteLine("Введите 3 элемент массива");
-int num3 = int.Parse(Console.ReadLine()!);
+int[] CreateArray(int num)
+{
+    int[] array = new int[num];
+    Console.WriteLine($"Рандомный массив с желаемым количеством элементов {num}");
+    return array;
+}
 
-Console.WriteLine("Введите 4 элемент массива");
-int num4 = int.Parse(Console.ReadLine()!);
+void AddedArray(int[] randomArray)
+{
+    for (int i = 0; i < randomArray.Length; i++)
+    {
+        randomArray[i] = new Random().Next(0, 10001);
+    }
+}
 
-Console.WriteLine("Введите 5 элемент массива");
-int num5 = int.Parse(Console.ReadLine()!);
+void PrintArray(int[] array)
+{
+    foreach (int elem in array)
+    {
+        Console.Write($"{elem} ");
+    }
+    
+}
 
-Console.WriteLine("Введите 6 элемент массива");
-int num6 = int.Parse(Console.ReadLine()!);
-
-Console.WriteLine("Введите 7 элемент массива");
-int num7 = int.Parse(Console.ReadLine()!);
-
-Console.WriteLine("Введите 8 элемент массива");
-int num8 = int.Parse(Console.ReadLine()!);
-
-Console.WriteLine($"Получившийся массив - [{num1}, {num2}, {num3}, {num4}, {num5}, {num6}, {num7}, {num8}]");
+Console.WriteLine("_____________________________________________________________________________________");
